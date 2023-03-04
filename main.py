@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Task:
     def __init__(self, name, desc, deadline) -> None:
         self.name = name
@@ -8,6 +10,7 @@ class Task:
 
 class TaskManager:
     def __init__(self) -> None:
+        self.today = datetime.today().date().strftime("%d/%m/%y")
         self.first = None
         self.last = None
 
@@ -26,7 +29,8 @@ class TaskManager:
         cur_task = self.first
         while cur_task is not None:
             if cur_task.name == name:
-                return print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}")
+                days_left =  datetime.strptime(cur_task.deadline, "%d/%m/%y") - datetime.strptime(self.today, "%d/%m/%y")
+                return print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê tem {days_left.days} dia(s) restante(s)")
             cur_task = cur_task.next
         print("Tarefa não encontrada")
     
@@ -52,13 +56,13 @@ class TaskManager:
     def __len__(self) -> int:
         return self.length()
 
+if __name__=="__main__":
+    taskman = TaskManager()
 
-taskman = TaskManager()
+    taskman.append_task("Atividade de CSD", "Fazer a atividade de CSD", "11/03/23")
+    taskman.append_task("Trabalho de ACE2", "Enviar o Trabalho de ACE2 no AVA", "04/03/23")
+    taskman.append_task("Reunião", "Reunião com o Prof. Adriano", "09/03/23")
 
-taskman.append_task("Atividade de CSD", "Fazer a atividade de CSD", "11/03/23")
-taskman.append_task("Trabalho de ACE2", "Enviar o Trabalho de ACE2 no AVA", "04/03/23")
-taskman.append_task("Reunião", "Reunião com o Prof. Adriano", "09/03/23")
+    taskman.show_tasks()
 
-taskman.show_tasks()
-
-taskman.search_task("Atividade de CSD")
+    taskman.search_task("Reunião")
