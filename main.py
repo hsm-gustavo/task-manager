@@ -88,7 +88,7 @@ Você está {abs(days_left)} dia(s) atrasado
     
     def show_tasks(self):
         cur_task = self.first
-        print(f"Você tem {len(self)} tarefa(s)\n")
+        print(f"\nVocê tem {len(self)} tarefa(s)\n")
         while cur_task is not None:
             print(f"Nome: {cur_task.name}\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}")
             print("-------------------------------")
@@ -110,7 +110,7 @@ Você está {abs(days_left)} dia(s) atrasado
 
 def menu(taskman: TaskManager):
     try:
-        command = int(input("1) Adicionar Tarefa\n2) Procurar tarefa (requer nome)\n3) Remover Tarefa (requer índice)\n4) Quantidade de tarefas\n5) Mostrar tarefas\n6) Sair do programa\nDigite o que deseja fazer: "))
+        command = int(input("1) Adicionar Tarefa\n2) Procurar tarefa (requer nome)\n3) Remover Tarefa (requer índice)\n4) Quantidade de tarefas\n5) Listar tarefas\n6) Sair do programa\nDigite o que deseja fazer: "))
 
         if command>6 or command<1:
             raise ValueError
