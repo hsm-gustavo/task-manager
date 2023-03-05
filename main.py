@@ -33,12 +33,26 @@ class TaskManager:
                 conversion_type = "%d/%m/%y" if len(cur_task.deadline)<9 else "%d/%m/%Y"
 
                 days_left =  datetime.strptime(cur_task.deadline, conversion_type) - datetime.strptime(self.today, "%d/%m/%y")
+                days_left = days_left.days
 
-                return print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê tem {days_left.days} dia(s) restante(s)") \
-                if days_left.days>=0 else print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê está {abs(days_left.days)} dia(s) atrasado")
+                s = str()
+                if days_left >= 0:
+                    s = f'''-------Tarefa encontrada-------
+Descrição: {cur_task.desc}
+Prazo: {cur_task.deadline}
+Você tem {days_left} dia(s) restante(s)
+'''
+                else:
+                    s = f'''-------Tarefa encontrada-------
+Descrição: {cur_task.desc}
+Prazo: {cur_task.deadline}
+Você está {abs(days_left)} dia(s) atrasado
+'''
+
+                return print(s)
             
             cur_task = cur_task.next
-            
+
         print("Tarefa não encontrada")
 
     def remove_task(self, index):
