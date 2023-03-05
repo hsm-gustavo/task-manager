@@ -30,9 +30,38 @@ class TaskManager:
         while cur_task is not None:
             if cur_task.name == name:
                 days_left =  datetime.strptime(cur_task.deadline, "%d/%m/%y") - datetime.strptime(self.today, "%d/%m/%y")
-                return print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê tem {days_left.days} dia(s) restante(s)")
+                return print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê tem {days_left.days} dia(s) restante(s)") \
+                if days_left.days>=0 else print(f"-------Tarefa encontrada-------\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}\nVocê está {abs(days_left.days)} dia(s) atrasado")
             cur_task = cur_task.next
         print("Tarefa não encontrada")
+
+    def remove_task(self, index):
+        if index >= len(self) or index < 0:
+            raise IndexError("Index out of range")
+        
+        if index == 0:
+            self.first = self.first.next
+            if self.first is not None:
+                self.first.prev = None
+            return print("\n--------Tarefa removida--------\n")
+        
+        elif index == len(self)-1:
+            self.last = self.last.prev
+            if self.last is not None:
+                self.last.next = None
+            return print("\n--------Tarefa removida--------\n")
+        
+        current = self.first
+        cur_index = 0
+
+        while cur_index != index:
+            current = current.next
+            cur_index += 1
+
+        current.prev.next = current.next
+        current.next.prev = current.prev
+
+        return print("\n--------Tarefa removida--------\n")
     
     def show_tasks(self):
         cur_task = self.first
@@ -59,10 +88,14 @@ class TaskManager:
 if __name__=="__main__":
     taskman = TaskManager()
 
-    taskman.append_task("Atividade de CSD", "Fazer a atividade de CSD", "11/03/23")
+    taskman.append_task("Atividade de CSD", "Entregar a atividade de CSD", "11/03/23")
     taskman.append_task("Trabalho de ACE2", "Enviar o Trabalho de ACE2 no AVA", "04/03/23")
     taskman.append_task("Reunião", "Reunião com o Prof. Adriano", "09/03/23")
 
     taskman.show_tasks()
 
-    taskman.search_task("Reunião")
+    taskman.search_task("Trabalho de ACE2")
+
+    taskman.remove_task(0)
+
+    taskman.show_tasks()
