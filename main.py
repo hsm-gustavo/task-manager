@@ -39,7 +39,7 @@ class TaskManager:
         print(f"Você tem {len(self)} tarefa(s)\n")
         while cur_task is not None:
             print(f"Nome: {cur_task.name}\nDescrição: {cur_task.desc}\nPrazo: {cur_task.deadline}")
-            print("------------------------------")
+            print("-------------------------------")
             cur_task = cur_task.next
 
     def is_empty(self) -> bool:
