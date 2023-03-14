@@ -46,4 +46,4 @@ Ao escolher a opção 6, você será solicitado a digitar o índice da tarefa qu
 
 ### Sair do programa
 
-Ao escolher a opção 6, o programa irá encerrar.
+Ao escolher a opção 7, o programa irá encerrar.
