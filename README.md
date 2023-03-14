@@ -17,7 +17,8 @@ O programa iniciará mostrando o menu principal, onde você pode escolher entre 
 3. Remover tarefa (requer índice)
 4. Quantidade de tarefas
 5. Listar tarefas
-6. Sair do programa
+6. Editar tarefa (requer índice)
+7. Sair do programa
 
 ### Adicionar tarefa
 
@@ -38,6 +39,10 @@ Ao escolher a opção 4, o programa irá retornar a quantidade de tarefas que es
 ### Listar tarefas
 
 Ao escolher a opção 5, o programa irá listar todas as tarefas que estão na lista.
+
+### Editar tarefa
+
+Ao escolher a opção 6, você será solicitado a digitar o índice da tarefa que deseja editar. O programa irá procurar pelo índice digitado na lista de tarefas e então vai perguntar quais são as novas informações da tarefa (nome, descrição e prazo). Qualquer campo vazio será ignorado, mantendo as mesmas informações antes da edição. Caso a lista esteja vazia, o índice esteja fora do alcance ou não encontre nenhuma tarefa com o índice digitado, o programa retornará uma mensagem de erro.
 
 ### Sair do programa
 
