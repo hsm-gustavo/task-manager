@@ -14,6 +14,7 @@ class TaskManager:
         self.first = None
         self.last = None
         self.size = 0
+        self.__load_tasks()
 
     def append_task(self, name, desc, deadline):
         new_task = Task(name, desc, deadline)
@@ -146,14 +147,29 @@ Você está {abs(days_left)} dia(s) atrasado
         return self.first == None
     
     def length(self):
-        return print(f"\nVocê tem {len(self)} tarefa(s)\n")
+        print(f"\nVocê tem {len(self)} tarefa(s)\n")
     
     def __len__(self) -> int:
         return self.size
     
-    def __save_tasks(self, file:str=None):
-        with open(file, "w") as file:
+    def save_tasks(self):
+        with open("tasks.txt", "w") as file:
+            current = self.first
+            while current is not None:
+                file.write(f"{current.name}\n{current.desc}\n{current.deadline}")
+                file.write("\n")
+                current = current.next
+    
+    def __load_tasks(self):
+        try:
+            with open("tasks.txt", "r") as file:
+                lines = file.readlines()
+                for i in range(0, len(lines), 3):
+                    self.append_task(lines[i].strip(), lines[i+1].strip(), lines[i+2].strip())
+
+        except FileNotFoundError:
             pass
+            
 
 def menu(taskman: TaskManager):
     try:
@@ -186,6 +202,7 @@ def menu(taskman: TaskManager):
                 idx = int(input("Digite o índice da tarefa (a primeira tarefa tem índice zero):\n"))
                 taskman.edit_task(idx)
             case 7:
+                taskman.save_tasks()
                 raise KeyboardInterrupt
             
     except ValueError:
@@ -201,6 +218,7 @@ if __name__=="__main__":
         while True:
             menu(taskman)
     except KeyboardInterrupt:
+        taskman.save_tasks()
         print("\nSaindo do programa...")
 
 # TODO: Add a way to store tasks in a file
