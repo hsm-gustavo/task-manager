@@ -22,7 +22,7 @@ O programa iniciará mostrando o menu principal, onde você pode escolher entre 
 
 ### Adicionar tarefa
 
-Ao escolher a opção 1, você será solicitado a digitar o nome da tarefa, a descrição e o prazo da mesma. O prazo deve ser digitado de uma das seguinte maneiras: `dd/mm/aaaa` ou `dd/mm/aa`.
+Ao escolher a opção 1, você será solicitado a digitar o nome da tarefa, a descrição, o prazo e a prioridade da mesma. O prazo deve ser digitado de uma das seguinte maneiras: `dd/mm/aaaa` ou `dd/mm/aa`.
 
 ### Procurar tarefa
 
@@ -42,7 +42,7 @@ Ao escolher a opção 5, o programa irá listar todas as tarefas que estão na l
 
 ### Editar tarefa
 
-Ao escolher a opção 6, você será solicitado a digitar o índice da tarefa que deseja editar. O programa irá procurar pelo índice digitado na lista de tarefas e então vai perguntar quais são as novas informações da tarefa (nome, descrição e prazo). Qualquer campo vazio será ignorado, mantendo as mesmas informações antes da edição. Caso a lista esteja vazia, o índice esteja fora do alcance ou não encontre nenhuma tarefa com o índice digitado, o programa retornará uma mensagem de erro.
+Ao escolher a opção 6, você será solicitado a digitar o índice da tarefa que deseja editar. O programa irá procurar pelo índice digitado na lista de tarefas e então vai perguntar quais são as novas informações da tarefa (nome, descrição, prazo e prioridade). Qualquer campo vazio será ignorado, mantendo as mesmas informações antes da edição. Caso a lista esteja vazia, o índice esteja fora do alcance ou não encontre nenhuma tarefa com o índice digitado, o programa retornará uma mensagem de erro.
 
 ### Sair do programa
 
